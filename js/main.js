@@ -32,3 +32,26 @@ const container = document.querySelector(".container"),
     login.addEventListener("click", ( )=>{
         container.classList.remove("active");
     });
+
+    //   js code to save user data in cookies
+    function storeInputs() {
+        var name = document.getElementById('name').value;
+        var email = document.getElementById('email').value;
+        var password = document.getElementById('password').value;
+        var confirmPassword = document.getElementById('confirmPassword').value;
+        var isSeller = document.getElementById('termCon').checked;
+
+        if (password !== confirmPassword) {
+      alert('Passwords do not match.');
+      return;
+    }
+
+        var d = new Date();
+        d.setTime(d.getTime() + (30*24*60*60*1000)); // Expires in 30 days
+        var expires = "expires="+ d.toUTCString();
+
+        document.cookie = "name=" + name + ";" + expires + ";path=/";
+        document.cookie = "email=" + email + ";" + expires + ";path=/";
+        document.cookie = "password=" + password + ";" + expires + ";path=/";
+        document.cookie = "isSeller=" + isSeller + ";" + expires + ";path=/";
+    }
